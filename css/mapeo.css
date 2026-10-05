@@ -1,0 +1,65 @@
+/* Mapeo TMF ↔ DICCMED — theme.css del proyecto sps, scopeado a .mapeo y con la paleta clara de la app */
+.mapeo{--bg:#fff;--panel:#f8fafc;--panel-b:#f1f5f9;--ink:#0f172a;--sub:#64748b;--edge:#e2e8f0;--edge-strong:#cbd5e1;--green:#1f7a4d;--blue:#2b7bb9;--orange:#c2410c;--orange-bg:#fff4e5;--line:#2b7bb9;--line-approx:#94a3b8;
+background:var(--bg);color:var(--ink);border-top:8px solid var(--accent);border-radius:10px;width:100%;overflow:hidden;box-sizing:border-box}
+.mapeo *{box-sizing:border-box}
+.mapeo .mapeo-head{max-width:1300px;margin:0 auto;padding:18px 24px 10px;}
+.mapeo .step{font-size:.78rem;color:var(--sub);margin-bottom:8px;letter-spacing:.02em;}
+.mapeo h1{font-size:1.35rem;margin:0 0 10px;font-weight:700;}
+.mapeo h1 b{color:var(--ink)}
+.mapeo .subtitle{color:var(--sub);font-size:.9rem;max-width:82ch;line-height:1.55;margin:0 0 16px;}
+.mapeo .subtitle b{color:var(--ink)}
+.mapeo .controls{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+.mapeo .tabs{display:flex;gap:8px;flex-wrap:wrap;}
+.mapeo .tab{padding:6px 14px;border-radius:999px;font-size:.82rem;border:1px solid var(--edge);
+  color:var(--sub);cursor:pointer;background:var(--panel);}
+.mapeo .tab.active{border-color:var(--blue);color:var(--ink);}
+.mapeo .tab.disabled{opacity:.4;cursor:default;}
+.mapeo .tab.toggle{border-color:var(--edge-strong);}
+.mapeo .tab.toggle.on{border-color:var(--orange);color:var(--ink);}
+.mapeo .legend2{display:flex;gap:18px;font-size:.76rem;color:var(--sub);margin:4px 0 4px;}
+.mapeo .legend2 .ln{display:inline-flex;align-items:center;gap:6px;}
+.mapeo .legend2 .swatch{width:22px;height:0;border-top:2px solid var(--line);display:inline-block;}
+.mapeo .legend2 .swatch.approx{border-top:2px dashed var(--line-approx);}
+.mapeo .mapeo-main{max-width:1300px;margin:10px auto 60px;padding:0 24px;overflow-x:auto;}
+.mapeo .board{position:relative;min-width:max-content;padding:20px 0 30px;}
+.mapeo svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;}
+.mapeo svg path{fill:none;stroke:var(--line);stroke-width:1.6;opacity:.85;}
+.mapeo svg path.approx{stroke:var(--line-approx);stroke-dasharray:4 4;opacity:.7;}
+.mapeo svg text{font-size:.66rem;fill:var(--sub);
+  stroke:var(--bg);stroke-width:4px;paint-order:stroke;stroke-linejoin:round;}
+.mapeo svg text.approx{fill:var(--line-approx);}
+.mapeo .flow{display:flex;align-items:flex-start;gap:150px;}
+.mapeo .stack{display:flex;flex-direction:column;gap:40px;}
+.mapeo .card{background:var(--panel);border:1px solid var(--edge);border-radius:12px;
+  width:250px;padding:14px 16px 12px;position:relative;}
+.mapeo .card.accent-green{border-top:2px solid var(--green);}
+.mapeo .card .sys{font-size:.68rem;color:var(--sub);letter-spacing:.04em;margin-bottom:2px;}
+.mapeo .card .title{font-size:.98rem;font-weight:700;margin-bottom:10px;}
+.mapeo .card .title .alias{font-weight:400;color:var(--sub);font-size:.83rem;}
+.mapeo .field{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:5px 0;border-top:1px solid var(--edge);font-size:.8rem;}
+.mapeo .field:first-of-type{border-top:none;}
+.mapeo .fname{font-weight:600;}
+.mapeo .fname.dim{font-weight:400;color:var(--sub);}
+.mapeo .fbadge{font-size:.66rem;color:var(--sub);white-space:nowrap;}
+.mapeo .fbadge.pk{color:var(--blue);font-weight:700;}
+.mapeo .fval{font-size:.72rem;color:var(--sub);text-align:right;}
+.mapeo .fval.cond{color:var(--blue);font-weight:700;}
+.mapeo .note{margin-top:10px;background:var(--orange-bg);border:1px solid #5a3a28;color:#e8b394;
+  border-radius:8px;padding:8px 10px;font-size:.74rem;line-height:1.4;}
+.mapeo .board.compact .flow{gap:120px;}
+.mapeo .board.compact .card{width:210px;padding:10px 14px;}
+.mapeo .board.compact .card .title{margin-bottom:0;}
+.mapeo .board.compact .field{display:none;}
+.mapeo .board.compact .note{display:none;}
+/* neutraliza choques con app.css (.tabs/.tab/.field/.card) */
+.mapeo .tabs{height:auto;padding:0;border:0;overflow:visible;gap:8px;flex-wrap:wrap}
+.mapeo .tab{height:auto;font-size:.82rem;padding:6px 14px;border:1px solid var(--edge);border-radius:999px;background:var(--panel)}
+.mapeo .tab.active{border-color:var(--blue);color:var(--ink);font-weight:400}
+.mapeo .field{flex:none;flex-direction:row;gap:10px}
+.mapeo .card{display:block;gap:0;border:1px solid var(--edge);border-radius:12px;padding:14px 16px 12px}
+.mapeo .card.accent-green{border-top:2px solid var(--green)}
+.mapeo .note{border-color:#f5d0a9;color:#9a3412}
+/* v13: diccionario de campos visible dentro de cada lado del caso */
+.mapping-side-title small{font-size:10px;font-weight:500;opacity:.7;margin-left:auto;letter-spacing:.02em}
+.full-case-field label,.tmf-result-field label{text-transform:none}

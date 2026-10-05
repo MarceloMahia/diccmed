@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Nuevo AMP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-entity="amp" data-mode="nuevo">
+  <div id="global-nav" class="global-nav"></div>
+  <svg class="svg-sprite" width="0" height="0" aria-hidden="true">
+    <symbol id="chev" viewBox="0 0 12 12">
+      <path d="M2 4l4 4 4-4" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="x" viewBox="0 0 24 24">
+      <path d="M5 5l14 14M19 5L5 19" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+  <main id="app" class="app-shell"></main>
+<template id="t0" data-cls="">
+
+  <div class="group">
+
+    <div class="lbl-lg">
+      Término Preferido (P)
+      <span class="req">*</span>
+    </div>
+
+    <div class="tp-row">
+
+      <div class="input auto">
+        (complete los datos para generar el nombre)
+      </div>
+
+      <span class="chip">min</span>
+
+      <span class="man">
+        Auto
+      </span>
+
+    </div>
+
+    <div class="note-i">
+      Siempre auto — el nombre se compone con el distintivo.
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl-lg">
+      Distintivo
+    </div>
+
+    <div class="input dis">
+      Texto que desambigua el nombre auto (comodín / colisión)...
+    </div>
+
+  </div>
+
+
+  <div class="sep"></div>
+
+
+  <div class="syn-title">
+    Agregar sinónimo
+  </div>
+
+  <div class="syn-row">
+
+    <div class="input">
+      Nuevo término...
+    </div>
+
+    <div class="select" class="u3">
+
+      <span>Sinónimo</span>
+
+      <svg>
+        <use href="#chev"/>
+      </svg>
+
+    </div>
+
+    <div class="plus">
+      +
+    </div>
+
+  </div>
+
+
+  <div class="hint">
+    CREAC_NOMBRE = M (manual) · SENS_MAYUSC se auto-detecta
+  </div>
+
+</template>
+
+<template id="t1" data-cls="v">
+
+  <div class="group">
+
+    <div class="lbl">
+      Trade Family (TF)
+      <span class="req">*</span>
+    </div>
+
+    <div class="input w200">
+      Buscar TF...
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      VMP
+      <span class="req">*</span>
+    </div>
+
+    <div class="input w200">
+      Buscar VMP...
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      Laboratorio
+      <span class="req">*</span>
+    </div>
+
+    <div class="input w200">
+      Buscar laboratorio...
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      FFE (Forma farm. extendida)
+      <span class="req">*</span>
+    </div>
+
+    <div class="input w200">
+      Buscar FFE...
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      VCD (opcional)
+    </div>
+
+    <div class="select w520">
+
+      <span>
+        Elegí primero el VMP
+      </span>
+
+      <svg>
+        <use href="#chev"/>
+      </svg>
+
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      Cualidad
+    </div>
+
+    <div class="input w200">
+      Buscar cualidad...
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      Especial (comodín)
+    </div>
+
+    <div class="select w200">
+
+      <span>
+        No (estándar)
+      </span>
+
+      <svg>
+        <use href="#chev"/>
+      </svg>
+
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      Refrigerado (cadena de frío)
+    </div>
+
+    <div class="select w200">
+
+      <span>
+        No
+      </span>
+
+      <svg>
+        <use href="#chev"/>
+      </svg>
+
+    </div>
+
+  </div>
+
+
+  <div class="infobox">
+
+    <b>ℹ</b>
+    Carga inicial automática desde AlfaBeta (heladera).
+    Ajustá si corresponde.
+
+  </div>
+
+</template>
+
+<template id="t2" data-cls="v">
+
+  <div class="sec-row" class="u4">
+
+    <span class="pill">
+      Con qué se mide
+    </span>
+
+    lo que trae el envase
+    <b>de esta marca</b>:
+    jeringa, vaso, cuchara — con su capacidad y su escala
+
+    <span class="sp"></span>
+
+    <span>
+      0 dispositivos
+    </span>
+
+  </div>
+
+
+  <div class="infobox" class="u5">
+
+    <b>ⓘ</b>
+    Se guardan junto con el AMP al apretar
+    <b>«Crear AMP»</b>.
+
+    No hace falta crearlo primero:
+    si alguna fila es inválida, el alta entera se rechaza
+    y no queda nada a medias.
+
+  </div>
+
+
+  <div class="warn" class="u5">
+
+    Sin dispositivos. Es un estado
+    <b>legítimo</b>
+    (no todo envase trae uno), pero si el prospecto nombra
+    una jeringa o un vasito hay que cargarlo con su
+    <b>graduación</b>:
+    es lo que decide si una dosis se puede administrar.
+
+  </div>
+
+
+  <div class="card" class="u5">
+
+    <div class="card-t">
+      ▾ Agregar un dispositivo
+    </div>
+
+
+    <div class="frow">
+
+      <div class="u6">
+
+        <div class="fl">
+          Dispositivo
+          <span class="req">*</span>
+        </div>
+
+        <div class="pick">
+          — elegir —
+        </div>
+
+      </div>
+
+
+      <div class="u7">
+
+        <div class="fl">
+          Capacidad
+        </div>
+
+        <div class="input sm"></div>
+
+      </div>
+
+
+      <div class="u7">
+
+        <div class="fl">
+          Unidad
+        </div>
+
+        <div class="pick d">
+          — elegir —
+        </div>
+
+      </div>
+
+
+      <div class="u7">
+
+        <div class="fl">
+          Graduación
+        </div>
+
+        <div class="input sm"></div>
+
+      </div>
+
+
+      <div class="u8">
+
+        <div class="fl">
+          Unidad escala
+        </div>
+
+        <div class="pick d">
+          — elegir —
+        </div>
+
+      </div>
+
+
+      <div class="u9">
+
+        <div class="fl">
+          Confiab. graduación
+        </div>
+
+        <div class="select sm">
+
+          <span>
+            exacta
+          </span>
+
+          <svg>
+            <use href="#chev"/>
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="u10">
+
+      <b class="u11">
+        Fuente
+      </b>
+
+      <span class="req">*</span>
+
+      cita textual, mínimo 20 caracteres
+
+    </div>
+
+
+    <div
+      class="textarea"
+      class="u12"
+    >
+      ANMAT cert 59258 (ARINOVA), OCR: "..."
+    </div>
+
+
+    <div class="sep"></div>
+
+
+    <div class="u13">
+
+      <div class="btn-or-off">
+        Agregar dispositivo
+      </div>
+
+      — elegí qué dispositivo es
+
+    </div>
+
+  </div>
+
+</template>
+
+<template id="t3" data-cls="">
+
+  <div class="row">
+
+    <div class="field">
+
+      <div class="lbl">
+        Revisado
+      </div>
+
+      <div class="select">
+
+        <span>No</span>
+
+        <svg>
+          <use href="#chev"/>
+        </svg>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <div class="lbl">
+        Consultar
+      </div>
+
+      <div class="select">
+
+        <span>No</span>
+
+        <svg>
+          <use href="#chev"/>
+        </svg>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <div class="lbl">
+        Estado
+      </div>
+
+      <div class="select">
+
+        <span>Activo</span>
+
+        <svg>
+          <use href="#chev"/>
+        </svg>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <div class="lbl">
+        Comercializado
+      </div>
+
+      <div class="select ro">
+
+        <span>Sí</span>
+
+      </div>
+
+      <div class="orange">
+
+        Derivado:
+        se enciende solo si algún hijo activo está comercializado.
+        Se edita únicamente en el AMPP.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="field" class="u14">
+
+    <div class="lbl">
+      Observación
+    </div>
+
+    <div class="textarea"></div>
+
+  </div>
+
+</template>
+
+<template id="t4" data-cls="tight">
+
+  <div class="empty">
+    Sin mapeos registrados
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="sec-title">
+    Agregar Mapeo
+  </div>
+
+
+  <div class="group">
+
+    <div class="lbl">
+      Terminología
+    </div>
+
+    <div class="select">
+
+      <span>
+        -- Seleccionar terminología --
+      </span>
+
+      <svg>
+        <use href="#chev"/>
+      </svg>
+
+    </div>
+
+  </div>
+
+</template>
+
+<template id="t5" data-cls="tight">
+
+  <div class="empty">
+    Sin etiquetas asociadas
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="sec-title">
+    Agregar Etiqueta
+  </div>
+
+
+  <div class="group" class="u15">
+
+    <div class="lbl">
+      Etiqueta
+    </div>
+
+    <div class="input narrow">
+      Buscar etiqueta vigente...
+    </div>
+
+    <div class="btn-add">
+      Agregar
+    </div>
+
+  </div>
+
+</template>
+  <script src="../js/app.js"></script>
+</body>
+</html>

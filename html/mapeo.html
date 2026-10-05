@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Mapeo TMF ↔ DICCMED</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="../css/mapeo.css">
+</head>
+<body data-entity="mapeo" data-mode="nuevo">
+  <div id="global-nav" class="global-nav"></div>
+  <main class="app-shell">
+    <section class="mapeo" id="mapeo">
+      <div class="mapeo-head">
+        <div class="step" id="step"></div>
+        <h1 id="title"></h1>
+        <p class="subtitle" id="subtitle"></p>
+        <div class="controls">
+          <div class="tabs" id="tabs"></div>
+          <button type="button" class="tab toggle" id="btnCompact">Solo títulos</button>
+        </div>
+        <div class="legend2" id="legend">
+          <span class="ln"><span class="swatch"></span>Vínculo confirmado</span>
+          <span class="ln"><span class="swatch approx"></span>Vínculo a confirmar</span>
+        </div>
+      </div>
+      <div class="mapeo-main"><div class="board" id="board"><svg id="svg"></svg><div class="flow" id="flow"></div></div></div>
+    </section>
+  </main>
+  <script src="../js/app.js"></script>
+  <script src="../js/mapeo/engine.js"></script>
+  <script src="../js/mapeo/sustancia.data.js"></script>
+  <script src="../js/mapeo/generico.data.js"></script>
+  <script>DiagramEngine.init({ levels: { ...SUSTANCIA_LEVELS, ...GENERICO_LEVELS } });</script>
+</body>
+</html>

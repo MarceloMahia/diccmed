@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Nuevo VMP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-entity="vmp" data-mode="nuevo">
+  <div id="global-nav" class="global-nav"></div>
+  <svg class="svg-sprite" width="0" height="0" aria-hidden="true">
+    <symbol id="chev" viewBox="0 0 12 12">
+      <path d="M2 4l4 4 4-4" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="x" viewBox="0 0 24 24">
+      <path d="M5 5l14 14M19 5L5 19" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+  <main id="app" class="app-shell"></main>
+<template id="t0" data-cls=""><div class="group"><div class="lbl-lg">Termino Preferido (P) — auto-generado <span class="req">*</span></div>
+<div class="tp-row"><div class="input auto">(complete los datos para generar el nombre)</div><span class="chip">min</span><div class="sel-mini"><span>Auto</span><svg><use href="#chev"/></svg></div><span class="note-i">Siempre auto — el nombre se compone con el distintivo</span></div></div>
+<div class="group"><div class="lbl-lg">Distintivo</div><div class="input dis">Texto que desambigua el nombre auto (comodin / colision)...</div></div>
+<div class="radiobox"><div class="rb-title">¿Cómo se arma el preferido (P) de este concepto?</div>
+<div class="rb"><span class="rdo"></span><div><div class="rb-t"><span class="c-m">distintivo</span> literal</div><div class="rb-d">El nombre es tu texto, exacto (para dispositivos/categorías donde la forma no es un sufijo).</div></div></div>
+<div class="rb"><span class="rdo on"></span><div><div class="rb-t"><span class="c-m">distintivo</span> + <span class="c-p">FFA</span> + <span class="c-t">volumen</span></div><div class="rb-d">El nombre se compone: tu texto más la forma farmacéutica y el volumen (que así cascadean si cambian).</div></div></div></div>
+<div class="sep"></div><div class="syn-title">Agregar sinonimo</div>
+<div class="syn-row"><div class="input">Nuevo termino...</div><div class="select" class="u3"><span>Sinonimo</span><svg><use href="#chev"/></svg></div><div class="plus">+</div></div>
+<div class="hint">CREAC_NOMBRE = M (manual) · SENS_MAYUSC se auto-detecta</div></template>
+
+<template id="t1" data-cls="v"><div class="group"><div class="lbl-s">VTM <span class="req">*</span></div><div class="input w200">Buscar VTM...</div></div>
+<div class="group"><div class="lbl-s">Forma farmacéutica agrupada (FFA) <span class="req">*</span></div><div class="input w200">Buscar FFA...</div></div>
+<div class="row"><div class="field"><div class="group"><div class="lbl-s">Volumen total cant.</div><div class="input"></div></div></div><div class="field"><div class="group"><div class="lbl-s">Volumen total unidad</div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div></div></div></div>
+<div class="group"><div class="lbl-s">Unidosis <span class="req">*</span></div><div class="warn">Sin unidosis. Hacen falta <b>al menos una de prescripción y una de despacho</b>: cargalas en la pestaña <b>«Unidosis»</b>.</div></div>
+<div class="group"><div class="lbl-s">Especial (comodín)</div><div class="select"><span>No (estándar)</span><svg><use href="#chev"/></svg></div></div>
+<div class="group"><div class="lbl-s">Condición de expendio <span class="req">*</span></div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div></div>
+<div class="group"><div class="lbl-s">Estado de prescripción <span class="req">*</span></div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div></div>
+<div class="group"><div class="lbl-s">Tipo de producto ANMAT <span class="req">*</span></div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div><div class="orange-h">Categoría regulatoria ANMAT. Un VMP pertenece a una sola.</div></div>
+<div class="row"><div class="field"><div class="group"><div class="lbl-s">Cantidad</div><div class="input"></div></div></div><div class="field"><div class="group"><div class="lbl-s">Unidad asistencial <span class="req">*</span></div><div class="input w200">Buscar unidad asistencial...</div></div></div></div>
+<div class="group"><div class="lbl-s">Vías de administración <span class="req">*</span></div><div class="warn">Sin vías. Agregá al menos una en la pestaña <b>«Vías»</b>.</div></div></template>
+
+<template id="t2" data-cls="v"><div class="desc">Vías de administración del VMP. Podés tener <b>más de una</b>, reordenarlas (la <b>orden 1</b> es la principal) y darlas de baja. Debe quedar al menos una. Se guardan al crear el VMP.</div>
+<div class="warn">Este VMP no tiene vías activas. Agregá al menos una abajo.</div>
+<div class="group"><div class="lbl-s">Agregar vía</div><div class="input w200">Buscar vía de administrac</div></div></template>
+
+<template id="t3" data-cls="v"><div class="sec-row"><span class="pill blue">Prescripción</span>en qué unidad se indica <span class="req">*</span><span class="sp"></span><div class="input sm">+ agregar unidad...</div></div>
+<div class="warn">Sin unidad de prescripción — el DM no sabe cómo se indica este producto. Es un error, no un hueco (QC <b>U1</b>): mirá primero si le falta la potencia o si la forma está mal clasificada. Detalle en i.</div>
+<div class="sec-row" class="u20"><span class="pill">Despacho</span>en qué unidad se dispensa <span class="req">*</span><span class="sp"></span><div class="input sm">+ agregar unidad...</div></div>
+<div class="warn">Sin unidad de despacho. Agregá al menos una.</div>
+<div class="fold" class="u20">▸ <b>Factores de conversión propios</b> <span>(0) — ninguno, que es lo normal</span></div></template>
+
+<template id="t4" data-cls="v"><div class="sec-row" class="u4"><span class="pill blue">Cómo se calcula</span>una sola regla por producto — siempre existe <span class="derv">Derivado · Convencion</span></div>
+<div class="row" class="u21">
+<div class="u22" class="group"><div class="lbl-s">Método de dosis <span class="req">*</span></div><div class="select"><span>Dosis fija</span><svg><use href="#chev"/></svg></div></div>
+<div class="u23" class="group"><div class="lbl-s">Redondeo</div><div class="select"><span>Unidad entera</span><svg><use href="#chev"/></svg></div></div>
+<div class="u23" class="group"><div class="lbl-s">Confiabilidad</div><div class="select"><span>Convencion</span><svg><use href="#chev"/></svg></div></div>
+<div class="u23" class="group"><div class="lbl-s">Techos</div><div class="select"><span>— sin máximos —</span><svg><use href="#chev"/></svg></div></div></div>
+<div class="group"><div class="lbl-s">Fuente</div><div class="row" class="u24"><div class="input" class="u23">PKG_DM_CALCULO.derivar_vmp</div><div class="chk"><span class="box"></span>No autocalcular</div></div></div>
+<div class="group"><div class="lbl-s">Observación</div><div class="textarea" class="u25">Derivado por regla: dosis fija es la practica habitual. No se leyo el prospecto de este producto.</div></div>
+<div class="sep"></div><div class="btn-or">Guardar regla</div>
+<div class="sec-row" class="u26"><span class="pill blue">Pautas de la ficha</span>0..N — solo si la ficha distingue por indicación, población o fase<span class="sp"></span><span class="lnk">+ Agregar pauta</span></div>
+<div class="orange-h">Sin pautas — <b>no es un dato faltante</b>. Cuándo se agrega una, en el panel de reglas.</div></template>
+
+<template id="t5" data-cls="v"><div class="infobox">i Este VMP debe tener <b>exactamente las mismas sustancias del VTM</b> (misma cantidad e identidad) y en el <b>mismo orden</b> — ambos los define el VTM. Acá solo se cargan las <b>potencias</b> de cada sustancia. Para cambiar las sustancias o el orden, editá el VTM (se propaga a VMP, VMPP, AMP y AMPP). No se puede guardar el VMP si faltan sustancias del VTM o el orden difiere.</div>
+<div class="empty">Sin sustancias asignadas</div><div class="sep"></div><div class="sec-title">Agregar Sustancia</div><div class="input w200">Buscar sustancia...</div></template>
+
+<template id="t6" data-cls=""><div class="row">
+<div class="field"><div class="lbl">Revisado</div><div class="select"><span>No</span><svg><use href="#chev"/></svg></div></div>
+<div class="field"><div class="lbl">Consultar</div><div class="select"><span>No</span><svg><use href="#chev"/></svg></div></div>
+<div class="field"><div class="lbl">Estado</div><div class="select"><span>Activo</span><svg><use href="#chev"/></svg></div></div>
+<div class="field"><div class="lbl">Comercializado</div><div class="select ro"><span>Si</span></div><div class="orange">Derivado: se enciende solo si algún hijo activo está comercializado. Se edita únicamente en el AMPP.</div></div></div>
+<div class="group"><div class="lbl">Observacion</div><div class="textarea"></div></div></template>
+
+<template id="t7" data-cls="tight"><div class="empty">Sin mapeos registrados</div><div class="sep"></div><div class="sec-title">Mapeo NNE</div>
+<div class="group"><div class="lbl">Terminología</div><div class="select"><span>NNE</span><svg><use href="#chev"/></svg></div></div><div class="group"><div class="lbl">Código</div><div class="input narrow"></div></div></template>
+
+<template id="t8" data-cls="tight"><div class="empty">Sin etiquetas asociadas</div><div class="sep"></div><div class="sec-title">SAF</div>
+<div class="group"><div class="lbl">Etiqueta SAF</div><div class="input narrow">Buscar SAF vigente...</div><div class="btn-add">Agregar</div></div></template>
+  <script src="../js/app.js"></script>
+</body>
+</html>

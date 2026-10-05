@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo AMPP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-entity="ampp" data-mode="nuevo">
+
+  <!-- Navegación transversal: la genera app.js -->
+  <div id="global-nav" class="global-nav"></div>
+  <svg class="svg-sprite" width="0" height="0" aria-hidden="true">
+    <symbol id="chev" viewBox="0 0 12 12">
+      <path d="M2 4l4 4 4-4" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="x" viewBox="0 0 24 24">
+      <path d="M5 5l14 14M19 5L5 19" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <main id="app" class="app-shell"></main>
+
+  <!-- ============================================================
+       AMPP — 8 pantallas
+       El contenido queda en templates para que app.js lo renderice
+       igual que el resto de las entidades.
+       ============================================================ -->
+
+  <!-- 0. PREFERIDO -->
+  <template id="t0" data-title="Preferido" data-cls="">
+        <div class="group">
+          <div class="lbl-lg">
+            Termino Preferido (P) — auto-generado <span class="req">*</span>
+          </div>
+          <div class="tp-row">
+            <div class="input auto">(complete los datos para generar el nombre)</div>
+            <span class="chip">min</span>
+            <div class="select dis ampp-auto-select">
+              <span>Auto</span>
+              <svg viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="man">Siempre auto — el nombre se compone con el distintivo</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="lbl-lg">Distintivo</div>
+          <div class="input ph">Texto que desambigua el nombre auto (comodin / colision)...</div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="syn-title">Agregar sinonimo</div>
+        <div class="syn-row">
+          <div class="input">Nuevo termino...</div>
+          <div class="select ampp-syn-type">
+            <span>Sinonimo</span>
+            <svg viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="plus">+</div>
+        </div>
+        <div class="hint">CREAC_NOMBRE = M (manual) · SENS_MAYUSC se auto-detecta</div>
+</template>
+
+  <!-- 1. COMPONENTES -->
+  <template id="t1" data-title="Componentes" data-cls="ampp-body-200">
+        <div class="group">
+          <div class="lbl">AMP <span class="req">*</span></div>
+          <div class="input narrow">Buscar AMP...</div>
+        </div>
+        <div class="group">
+          <div class="lbl">VMPP <span class="req">*</span></div>
+          <div class="input narrow">Buscar VMPP...</div>
+        </div>
+        <div class="group">
+          <div class="lbl">Laboratorio · derivado de AMP</div>
+          <div class="input auto">Se toma de AMP.LABORATORIO</div>
+        </div>
+</template>
+
+  <!-- 2. PACK -->
+  <template id="t2" data-title="Pack" data-cls="ampp-body-250">
+        <div class="group">
+          <div class="lbl">Pack envase cant.</div>
+          <div class="input"></div>
+        </div>
+        <div class="group">
+          <div class="lbl">Unidad pack envase</div>
+          <div class="input narrow">Buscar unidad...</div>
+        </div>
+        <div class="group">
+          <div class="lbl">Codigo fabricante</div>
+          <div class="input ph">Codigo del fabricante (opcional)</div>
+        </div>
+</template>
+
+  <!-- 3. GTIN -->
+  <template id="t3" data-title="GTIN" data-cls="ampp-body-200">
+        <div class="notice">
+          <b>ℹ</b> GTIN del producto. Los de <b>AlfaBeta</b> se derivan automáticamente del troquel (no editables) y se marca si <b>SNOMED CT</b> los conoce. Cargá acá solo los GTIN <b>que no estén</b> en AlfaBeta ni SNOMED (p. ej. Remediar, presentaciones hospitalarias, descartables).
+        </div>
+        <div class="pending">Guardá el AMPP primero; luego vas a poder cargar GTIN extra.</div>
+</template>
+
+  <!-- 4. KAIROS -->
+  <template id="t4" data-title="Kairos" data-cls="ampp-body-200">
+        <div class="notice">
+          <b>ℹ</b> Mapeo a <b>Kairos</b> (vademécum de precios). El AMPP (presentación comercial) se mapea al <b>id de presentación Kairos</b> (numérico). Opcionalmente podés registrar el id de producto Kairos.
+        </div>
+        <div class="pending">Guardá el AMPP primero; luego vas a poder mapear a Kairos.</div>
+</template>
+
+  <!-- 5. METADATOS -->
+  <template id="t5" data-title="Metadatos" data-cls="">
+        <div class="row">
+          <div class="field">
+            <div class="lbl">Revisado</div>
+            <div class="select">
+              <span>No</span>
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="field">
+            <div class="lbl">Consultar</div>
+            <div class="select">
+              <span>No</span>
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="field">
+            <div class="lbl">Estado</div>
+            <div class="select">
+              <span>Activo</span>
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="field">
+            <div class="lbl">Comercializado</div>
+            <div class="select">
+              <span>Si</span>
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="field ampp-field-full">
+          <div class="lbl">Observacion</div>
+          <div class="textarea"></div>
+        </div>
+</template>
+
+  <!-- 6. MAPEOS -->
+  <template id="t6" data-title="Mapeos" data-cls="tight">
+        <div class="empty">Sin mapeos registrados</div>
+        <div class="sep"></div>
+        <div class="sec-title">Agregar Mapeo</div>
+        <div class="group">
+          <div class="lbl">Terminologia</div>
+          <div class="select">
+            <span>-- Seleccionar terminologia --</span>
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+</template>
+
+  <!-- 7. ETIQUETAS -->
+  <template id="t7" data-title="Etiquetas" data-cls="tight">
+        <div class="empty">Sin etiquetas asociadas</div>
+        <div class="sep"></div>
+        <div class="sec-title">Agregar Etiqueta</div>
+        <div class="group ampp-label-group">
+          <div class="lbl">Etiqueta</div>
+          <div class="input narrow">Buscar etiqueta vigente (</div>
+          <div class="btn-add">Agregar</div>
+        </div>
+</template>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

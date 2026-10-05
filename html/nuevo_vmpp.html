@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Nuevo VMPP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-entity="vmpp" data-mode="nuevo">
+  <div id="global-nav" class="global-nav"></div>
+  <svg class="svg-sprite" width="0" height="0" aria-hidden="true">
+    <symbol id="chev" viewBox="0 0 12 12">
+      <path d="M2 4l4 4 4-4" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="x" viewBox="0 0 24 24">
+      <path d="M5 5l14 14M19 5L5 19" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+  <main id="app" class="app-shell"></main>
+<template id="t0" data-cls=""><div class="group"><div class="lbl-lg">Termino Preferido (P) — auto-generado <span class="req">*</span></div>
+<div class="tp-row"><div class="input auto">(complete los datos para generar el nombre)</div><span class="chip">min</span><div class="sel-mini"><span>Auto</span><svg><use href="#chev"/></svg></div><span class="note-i">Siempre auto — el nombre se compone con el distintivo</span></div></div>
+<div class="group"><div class="lbl-lg">Distintivo</div><div class="input dis">Texto que desambigua el nombre auto (comodin / colision)...</div></div>
+<div class="sep"></div>
+<div class="syn-title">Agregar sinonimo</div>
+<div class="syn-row"><div class="input">Nuevo termino...</div><div class="select" class="u3"><span>Sinonimo</span><svg><use href="#chev"/></svg></div><div class="plus">+</div></div>
+<div class="hint">CREAC_NOMBRE = M (manual) · SENS_MAYUSC se auto-detecta</div></template>
+
+<template id="t1" data-cls="v"><div class="group"><div class="lbl">VMP <span class="req">*</span></div><div class="input w200">Buscar VMP...</div></div>
+<div class="row">
+<div class="field"><div class="lbl">Cantidad · empaque del fármaco comercial <span class="req">*</span></div><div class="input"></div></div>
+<div class="field"><div class="lbl">Tipo VMPP <span class="req">*</span></div><div class="select"><span></span><svg><use href="#chev"/></svg></div></div></div>
+<div class="group"><div class="lbl">Unidad de medida · envase del fármaco genérico <span class="req">*</span></div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div></div>
+<div class="row">
+<div class="field"><div class="lbl">Pack multi cant.</div><div class="input"></div></div>
+<div class="field"><div class="lbl">Pack multi unidad</div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div></div></div>
+<div class="row">
+<div class="field"><div class="lbl">Volumen total · cantidad del envase del fármaco genérico</div><div class="input"></div></div>
+<div class="field"><div class="lbl">Unidad volumen · unidad de medida del envase del fármaco genérico</div><div class="select"><span>-- Seleccionar --</span><svg><use href="#chev"/></svg></div></div></div>
+<div class="row">
+<div class="field"><div class="lbl">Dosis (cantidad)</div><div class="input"></div></div>
+<div class="field"><div class="lbl">Unidad dosis</div><div class="btn-dosis">Asignar "dosis"</div></div></div></template>
+
+<template id="t2" data-cls=""><div class="row">
+<div class="field"><div class="lbl">Revisado</div><div class="select"><span>No</span><svg><use href="#chev"/></svg></div></div>
+<div class="field"><div class="lbl">Consultar</div><div class="select"><span>No</span><svg><use href="#chev"/></svg></div></div>
+<div class="field"><div class="lbl">Estado</div><div class="select"><span>Activo</span><svg><use href="#chev"/></svg></div></div>
+<div class="field"><div class="lbl">Comercializado</div><div class="select ro"><span>Si</span></div><div class="orange">Derivado: se enciende solo si algún hijo activo está comercializado. Se edita únicamente en el AMPP.</div></div></div>
+<div class="field" class="u14"><div class="lbl">Observacion</div><div class="textarea"></div></div></template>
+
+<template id="t3" data-cls="tight"><div class="empty">Sin mapeos registrados</div><div class="sep"></div>
+<div class="sec-title">Mapeo NNE</div>
+<div class="group"><div class="lbl">Terminología</div><div class="select"><span>NNE</span><svg><use href="#chev"/></svg></div></div><div class="group"><div class="lbl">Código</div><div class="input narrow"></div></div></template>
+
+<template id="t4" data-cls="tight"><div class="empty">Sin etiquetas asociadas</div><div class="sep"></div>
+<div class="sec-title">Agregar Etiqueta</div>
+<div class="group"><div class="lbl">Etiqueta</div><div class="input narrow">Buscar etiqueta vigente (</div><div class="btn-add">Agregar</div></div></template>
+  <script src="../js/app.js"></script>
+</body>
+</html>
