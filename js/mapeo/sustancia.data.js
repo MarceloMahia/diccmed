@@ -20,8 +20,11 @@ const SUSTANCIA_LEVELS = {
           { id: 'fecha_ultima', name: 'FECHA_ULTIMA_MODIFICACION', val: '?' },
           { id: 'fecha_alta', name: 'FECHA_ALTA_MODIFICACION', val: '?' },
           { id: 'fecha_baja', name: 'FECHA_BAJA_MODIFICACION', val: '?' },
+          { id: 'modelo', name: 'MODELO', val: 'solo TMF' },
+          { id: 'id_snomed', name: 'ID_SNOMED', val: 'no se usa' },
+          { id: 'id_accion_farmacologica', name: 'ID_ACCION_FARMACOLOGICA', val: 'solo TMF' },
         ],
-        note: 'ID_SNOMED y ACCION_FARMACOLOGICA no esta en uso en TMF.'
+        note: 'MODELO e ID_ACCION_FARMACOLOGICA existen solo en TMF (DICCMED no los representa; la acción farmacológica queda fuera de alcance). ID_SNOMED no se usa hoy: si el costo-beneficio lo justifica, el SP podría completarlo desde DM_CONCEPTOS.ID_CONCEPTO. La pantalla TMF Componente ya tiene una pestaña Snomed.'
       }],
       [{
         id: 'scm', system: 'DICCMED', title: 'SIS_CONCEPTO_MAPEOS', alias: '(scm)',
@@ -37,7 +40,10 @@ const SUSTANCIA_LEVELS = {
         fields: [
           { id: 'id_concepto', name: 'ID_CONCEPTO', badge: 'PK' },
           { id: 'id_subcategoria', name: 'ID_SUBCATEGORIA', val: '= 1', cond: true },
+          { id: 'estado', name: 'ESTADO' },
+          { id: 'fecha_alta', name: 'FECHA_ALTA' },
           { id: 'fecha_ultima', name: 'FECHA_ULTIMA_MODIFICACION' },
+          { id: 'fecha_baja', name: 'FECHA_BAJA' },
         ],
         note: 'ID_SUBCATEGORIA=1 filtra los conceptos que son "sustancia".'
       }],

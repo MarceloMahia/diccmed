@@ -39,7 +39,7 @@ const NODE_FG = {
     { id: 'fecha_alta', name: 'FECHA_ALTA' },
     { id: 'fecha_baja', name: 'FECHA_BAJA' },
   ],
-  note: 'Se une directo con SIS_CONCEPTO_MAPEOS (ID_FARMACO_GENERICO = CODIGO_MAPEO). Además mapea contra FARMACO_MAPEO, que a su vez se enlaza con FARMACO_MAPEO_PROPIEDAD.'
+  note: 'Un FARMACO_GENERICO por cada VMPP (decisión propuesta). Se une directo con SIS_CONCEPTO_MAPEOS (ID_FARMACO_GENERICO = CODIGO_MAPEO) contra el concepto VMPP. Además mapea contra FARMACO_MAPEO, que a su vez se enlaza con FARMACO_MAPEO_PROPIEDAD.'
 };
 
 const NODE_FGC = {
@@ -81,7 +81,7 @@ const NODE_SCM = {
     { id: 'id_concepto', name: 'ID_CONCEPTO', badge: 'FK' },
     { id: 'codigo_mapeo', name: 'CODIGO_MAPEO', val: '= fg.ID' },
   ],
-  note: 'Puente mediante (ID_TERMINOLOGIA=27) : CODIGO_MAPEO se une directo con ID_FARMACO_GENERICO.'
+  note: 'Puente mediante (ID_TERMINOLOGIA=30) : CODIGO_MAPEO se une directo con ID_FARMACO_GENERICO.'
 };
 
 const NODE_SCE = {
@@ -97,10 +97,13 @@ const NODE_C = {
   id: 'c', system: 'DICCMED', title: 'DM_CONCEPTOS', alias: '(c)',
   fields: [
     { id: 'id_concepto', name: 'ID_CONCEPTO', badge: 'PK' },
-    { id: 'id_subcategoria', name: 'ID_SUBCATEGORIA', val: '= 3, 4 (VMP, VMPP)', cond: true },
-    { id: 'fecha_ultima', name: 'FECHA_ULTIMA_MODIFICACION', val: '?' },
+    { id: 'id_subcategoria', name: 'ID_SUBCATEGORIA', val: '= 4 (VMPP)', cond: true },
+    { id: 'estado', name: 'ESTADO' },
+    { id: 'fecha_alta', name: 'FECHA_ALTA' },
+    { id: 'fecha_ultima', name: 'FECHA_ULTIMA_MODIFICACION' },
+    { id: 'fecha_baja', name: 'FECHA_BAJA' },
   ],
-  note: 'ID_SUBCATEGORIA 3/4 filtra conceptos VMP y VMPP (genérico).'
+  note: 'ID_SUBCATEGORIA=4 filtra el concepto VMPP: es el que se mapea con FARMACO_GENERICO. El VMP (subcategoría 3) se alcanza desde DM_VMPP.ID_CONCEPTO_VMP. Estado y fechas de FARMACO_GENERICO salen de acá.'
 };
 
 const NODE_DCE = {
@@ -160,6 +163,7 @@ const NODE_DM_VMPP = {
   fields: [
     { id: 'id_concepto_vmpp', name: 'ID_CONCEPTO_VMPP', badge: 'PK' },
     { id: 'id_concepto_vmp', name: 'ID_CONCEPTO_VMP', badge: 'FK' },
+    { id: 'id_concepto_unidad', name: 'ID_CONCEPTO_UNIDAD', val: '→ ID_FARMACO_ENVASE' },
     { id: 'tipo_vmpp', name: 'TIPO_VMPP' },
     { id: 'cantidad', name: 'CANTIDAD' },
     { id: 'id_concepto_unidad_medida_cant', name: 'ID_CONCEPTO_UNIDAD_MEDIDA_CANT' },
@@ -175,7 +179,7 @@ const NODE_DM_VMPP = {
     { id: 'id_concepto_dosis_u', name: 'ID_CONCEPTO_DOSIS_U' },
     { id: 'distintivo', name: 'DISTINTIVO' },
   ],
-  note: 'Presentación (VMPP) de un VMP: varias filas VMPP pueden colgar del mismo VMP vía ID_CONCEPTO_VMP.'
+  note: 'Presentación (VMPP) de un VMP: varias filas VMPP pueden colgar del mismo VMP vía ID_CONCEPTO_VMP. Cada VMPP genera su propio FARMACO_GENERICO; ID_FARMACO_ENVASE sale de ID_CONCEPTO_UNIDAD; CANTIDAD y unidad del envase, del volumen total; EMPAQUE (comercial), de CANTIDAD.'
 };
 
 const NODE_DM_VMP_SUST = {
@@ -217,8 +221,8 @@ const GENERICO_FULL = {
     { from: 'sce.id_concepto', to: 'dce.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO', approx: true },
     { from: 'scm.id_concepto', to: 'c.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
     { from: 'c.id_concepto', to: 'dm_desc.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
-    { from: 'c', to: 'dm_vmp', label: 'concepto VMP/VMPP → DM_VMP', approx: true },
-    { from: 'c', to: 'dm_vmp_sust', label: 'concepto VMP/VMPP → DM_VMP_SUSTANCIA', approx: true },
+    { from: 'c', to: 'dm_vmp', label: 'concepto VMPP → VMP (ID_CONCEPTO_VMP) → DM_VMP', approx: true },
+    { from: 'c', to: 'dm_vmp_sust', label: 'concepto VMPP → VMP (ID_CONCEPTO_VMP) → DM_VMP_SUSTANCIA', approx: true },
     { from: 'dm_vmp', to: 'dm_vmp_uni', label: 'por ID_CONCEPTO_FFA', approx: true },
     { from: 'dm_vmp', to: 'dm_vmp_via', label: 'por ID_CONCEPTO_FFA', approx: true },
     { from: 'dm_vmp', to: 'dm_vmpp.id_concepto_vmp', label: 'ID_CONCEPTO = ID_CONCEPTO_VMP', approx: true },
@@ -251,7 +255,7 @@ const GENERICO_LEVELS = {
       { from: 'sce.id_concepto', to: 'dce.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
       { from: 'scm.id_concepto', to: 'c.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
       { from: 'c.id_concepto', to: 'dm_desc.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
-      { from: 'c', to: 'dm_vmp', label: 'concepto VMP/VMPP → DM_VMP', approx: true },
+      { from: 'c', to: 'dm_vmp', label: 'concepto VMPP → VMP (ID_CONCEPTO_VMP) → DM_VMP', approx: true },
       { from: 'dm_vmp', to: 'dm_vmp_uni', label: 'por ID_CONCEPTO_FFA', approx: true },
       { from: 'dm_vmp', to: 'dm_vmp_via', label: 'por ID_CONCEPTO_FFA', approx: true },
       { from: 'dm_vmp', to: 'dm_vmpp.id_concepto_vmp', label: 'ID_CONCEPTO = ID_CONCEPTO_VMP', approx: true },
@@ -276,7 +280,7 @@ const GENERICO_LEVELS = {
       { from: 'fgc.id_farmaco_generico', to: 'scm', label: 'mismo puente que en Genérico', approx: true },
       { from: 'scm.id_concepto', to: 'c.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
       { from: 'c.id_concepto', to: 'dm_desc.id_concepto', label: 'ID_CONCEPTO = ID_CONCEPTO' },
-      { from: 'c', to: 'dm_vmp_sust', label: 'concepto VMP/VMPP → DM_VMP_SUSTANCIA', approx: true },
+      { from: 'c', to: 'dm_vmp_sust', label: 'concepto VMPP → VMP (ID_CONCEPTO_VMP) → DM_VMP_SUSTANCIA', approx: true },
       { from: 'fgc.id_farmaco_sustancia', to: 'dm_vmp_sust.id_concepto_sustancia', label: 'ID_FARMACO_SUSTANCIA = ID_CONCEPTO_SUSTANCIA' },
     ]
   },
